@@ -451,7 +451,7 @@ ax.tick_params(axis="y", labelsize=12, colors="black")
 
 # Show in Streamlit
 st.subheader("Canada CO₂ Emissions vs Temperature (1980–2014)")
-st.pyplot(fig_can)
+st.pyplot(fig9)
 
 st.header("USA and Canada Emissions v. Temperature scatterplots") 
 st.write("Scatterplot of Emissions v. Temperature for both the US (left) and Canada (right) with line of best fit")
