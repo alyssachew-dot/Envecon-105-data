@@ -428,10 +428,10 @@ st.pyplot(fig8)
 
 # scatterplots (Canada)
 # Filter and reshape data
-filtered = all_merged_drop[
-    (all_merged_drop['Country'] == "Canada") &
-    (all_merged_drop['Year'] >= 1980) &
-    (all_merged_drop['Year'] <= 2014)
+filtered = all_merged_drop_ca[
+    (all_merged_drop_ca['Country'] == "Canada") &
+    (all_merged_drop_ca['Year'] >= 1980) &
+    (all_merged_drop_ca['Year'] <= 2014)
 ]
 filtered = filtered.drop(columns=['Label'])
 wide_Canada = filtered.pivot(index='Year', columns='Indicator', values='Value').reset_index()
