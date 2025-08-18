@@ -304,6 +304,7 @@ col1, col2 = st.columns(2)
 
 st.header("Distribution of indicators (energy, GDP, and emissions) around the world and USA and Canada isoalted") 
 st.write("Side-by-side display of the graphs of the world wide distribution of indicators and the graphs of just USA (left) and Canada (right) distribtions of indicators isolated")")
+
 with col1:
     st.subheader("USA line isolated")
     st.pyplot(fig4)
@@ -316,7 +317,86 @@ with col2:
 
 
 
+#facet plot (US)
 
-    
+CO2_temp_US = all_merged_drop[
+    (all_merged_drop['Country'] == "United States") &
+    (all_merged_drop['Year'] >= 1980) &
+    (all_merged_drop['Year'] <= 2014) &
+    (all_merged_drop['Indicator'].isin(["Emissions", "Temperature"]))].copy()
+
+
+if 'Label' not in CO2_temp_US.columns:
+    CO2_temp_US['Label'] = CO2_temp_US['Indicator'] 
+
+
+CO2_temp_US['Label'] = pd.Categorical(CO2_temp_US['Label'], ordered=True)
+
+CO2_temp_US_facet = (
+    ggplot(CO2_temp_US, aes(x ='Year', y = 'Value'))
+    + geom_point()
+    + geom_smooth(method = 'loess', se = False,color = 'blue')
+    + scale_x_continuous(breaks = range(1980, 2015, 5), labels = range(1980, 2015, 5))
+    + facet_wrap('~Label', scales='free_y', ncol=1)
+    + theme_classic()
+    + theme(
+        axis_text_x = element_text(size = 12, angle = 90, color = 'black'),
+        axis_text_y = element_text(size = 12, color = 'black'),
+        strip_text_x = element_text(size = 14),
+        axis_title = element_blank(),
+        plot_title = element_text(size = 16))
+    + labs(title = "US Emissions and Temperatures (1980-2014)"))
+fig6 = CO2_temp_US_facet.draw()
+
+
+#facet plot (Canada)
+CO2_temp_Canada = all_merged_drop[
+    (all_merged_drop['Country'] == "Canada") &
+    (all_merged_drop['Year'] >= 1980) &
+    (all_merged_drop['Year'] <= 2014) &
+    (all_merged_drop['Indicator'].isin(["Emissions", "Temperature"]))].copy()
+
+
+if 'Label' not in CO2_temp_Canada.columns:
+    CO2_temp_Canada['Label'] = CO2_temp_Canada['Indicator'] 
+
+
+CO2_temp_Canada['Label'] = pd.Categorical(CO2_temp_Canada['Indicator'], categories = ["Emissions", "Temperature"], ordered=True)
+
+CO2_temp_Canada_facet = (
+    ggplot(CO2_temp_Canada, aes(x = 'Year', y = 'Value'))
+    + geom_point()
+    + geom_smooth(method = 'loess', se = False, color = 'blue')
+    + scale_x_continuous(breaks = range(1980, 2015, 5), labels = range(1980, 2015, 5))
+    + facet_wrap('~Label', scales='free_y', ncol=1)
+    + theme_classic()
+    + theme(
+        axis_text_x = element_text(size = 12, angle = 90, color = 'black'),
+        axis_text_y = element_text(size = 12, color = 'black'),
+        strip_text_x = element_text(size = 14),
+        axis_title = element_blank(),
+        plot_title = element_text(size = 16))
+    + labs(title = "Canada Emissions and Temperatures (1980-2014)"))
+
+CO2_temp_Canada["Label"] = CO2_temp_Canada["Indicator"].map({
+    "Emissions": "CO₂ Emissions (Metric Tonnes)",
+    "Temperature": "Temperature departure (Celsius)"
+})
+fig7 = CO2_temp_Canada_facet.draw()
+
+col1, col2 = st.columns(2)
+
+st.header("USA and Canada Emissions and temperature scatterplots") 
+st.write("Simultaneous display of the scatterplot of emissions v. time and temperature v. time for both the US (left) and Canada (right)")
+
+with col1:
+    st.subheader("USA specific graphs")
+    st.pyplot(fig6)
+
+with col2:
+    st.subheader("Canada specific graphs)
+    st.pyplot(fig7)
+
+
 
 
