@@ -246,9 +246,9 @@ Top10b_plot = (
         legend_position="none"
     )
 )
-
-fig = plot.draw()
+fig3 = Top10b_plot.draw()
+st.subheader("Top 10 Emissions-Producing Countries (1900–2014)")
 st.header("Top 10 CO₂ Emission-Producing Countries")
 st.write("This line graph shows emissions for the top 10 countries ranked by 2014 emissions.")
-st.pyplot(fig)
+st.pyplot(fig3)
 
