@@ -583,7 +583,7 @@ with col2:
 
 st.title("Data Analysis")
 col 1, col2 = st.columns(2)
-st.header("Mean and Standard Deviations) 
+st.header("Mean and Standard Deviations") 
 with col1:
     st.subheader("USA")
     st.write("mean emissions US: 5142285.714285715 Mt")
