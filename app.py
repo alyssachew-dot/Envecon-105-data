@@ -349,11 +349,11 @@ fig6 = CO2_temp_US_facet.draw()
 
 
 #facet plot (Canada)
-CO2_temp_Canada = all_merged_drop[
-    (all_merged_drop['Country'] == "Canada") &
-    (all_merged_drop['Year'] >= 1980) &
-    (all_merged_drop['Year'] <= 2014) &
-    (all_merged_drop['Indicator'].isin(["Emissions", "Temperature"]))].copy()
+CO2_temp_Canada = all_merged_drop_ca[
+    (all_merged_drop_ca['Country'] == "Canada") &
+    (all_merged_drop_ca['Year'] >= 1980) &
+    (all_merged_drop_ca['Year'] <= 2014) &
+    (all_merged_drop_ca['Indicator'].isin(["Emissions", "Temperature"]))].copy()
 
 
 if 'Label' not in CO2_temp_Canada.columns:
