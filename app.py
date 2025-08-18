@@ -172,3 +172,83 @@ fig = plot.draw()
 st.header("Top 10 CO₂ Emission-Producing Countries")
 st.write("This heatmap shows emissions for the top 10 countries ranked by 2014 emissions.")
 st.pyplot(fig)
+
+
+
+
+# top 10 line plot with country labels 
+
+from plotnine import (
+    ggplot, aes, geom_line, geom_text, labs, theme_classic,
+    theme, element_text, scale_x_continuous
+)
+from plotnine.scales import scale_color_cmap_d
+import pandas as pd
+import numpy as np
+
+top_10_count = (
+    all_merged_drop[
+        (all_merged_drop["Indicator"] == "Emissions") &
+        (all_merged_drop["Year"] == 2014)
+    ].copy()
+)
+top_10_count["rank"] = top_10_count["Value"].rank(method="dense", ascending=False).astype(int)
+top_10_count = top_10_count[top_10_count["rank"] <= 10].sort_values("rank")
+top_10_countries = top_10_count["Country"].tolist()
+
+Top10b = all_merged_drop[
+    (all_merged_drop["Country"].isin(top_10_countries)) &
+    (all_merged_drop["Indicator"] == "Emissions") &
+    (all_merged_drop["Year"] >= 1900)
+].copy()
+
+labels_df = Top10b.groupby("Country").apply(
+    lambda df: df[df["Year"] == df["Year"].max()]
+).reset_index(drop=True)
+
+labels_df = labels_df.sort_values("Value").reset_index(drop=True)
+min_dist = 0.03 * (labels_df["Value"].max() - labels_df["Value"].min())
+y_positions = labels_df["Value"].values.copy()
+for i in range(1, len(y_positions)):
+    if y_positions[i] - y_positions[i-1] < min_dist:
+        y_positions[i] = y_positions[i-1] + min_dist
+labels_df["y_spread"] = y_positions
+
+Top10b_plot = (
+    ggplot(Top10b, aes(x="Year", y="Value", color="Country"))
+    + geom_line(size=1)
+    + geom_text(
+        data=labels_df,
+        mapping=aes(x="Year", y="y_spread", label="Country"),
+        ha="left",
+        va="center",
+        nudge_x=0.5
+    )
+    + scale_color_cmap_d(cmap_name="viridis")
+    + scale_x_continuous(
+        breaks=range(1900, 2015, 5),
+        expand=(0.05, 0)
+    )
+    + labs(
+        title="Top 10 Emissions-producing Countries in 2010 (1900–2014)",
+        subtitle="Ordered by Emissions Produced in 2014",
+        x="Year",
+        y="Emissions (Metric Tons)"
+    )
+    + theme_classic()
+    + theme(
+        figure_size=(12, 6),
+        axis_text_x=element_text(size=12, rotation=45, ha="right"),
+        axis_text_y=element_text(size=12),
+        axis_title_x=element_text(size=14),
+        axis_title_y=element_text(size=14),
+        plot_title=element_text(size=16),
+        legend_position="none"
+    )
+)
+
+fig = plot.draw()
+st.header("Top 10 CO₂ Emission-Producing Countries")
+st.write("This line graph shows emissions for the top 10 countries ranked by 2014 emissions.")
+st.pyplot(fig)
+
