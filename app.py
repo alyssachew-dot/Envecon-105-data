@@ -276,10 +276,6 @@ distrib_indicators_plot = (
     + theme(strip_text=element_text(size=16, face="bold"), figure_size=(12, 12))
 )
 fig4 = distrib_indicators_plot.draw()
-st.subheader("Distributions of indicators by Year and Value")
-#st.header("Top 10 CO₂ Emission-Producing Countries")
-st.write("These graphs single out the lines for Canada and the USA and creates plots which is deployed right next to the graphs that complile the lines for all countries for all the different indicators (GDP growth, energy, emissions).")
-st.pyplot(fig4)
 
 # Distributions of indicators by Year and Value (Canada)
 from plotnine import (
