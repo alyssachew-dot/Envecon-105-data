@@ -394,7 +394,7 @@ with col1:
     st.pyplot(fig6)
 
 with col2:
-    st.subheader("Canada specific graphs)
+    st.subheader("Canada specific graphs")
     st.pyplot(fig7)
 
 
