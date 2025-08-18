@@ -1,12 +1,14 @@
+!pip install plotnine
+!pip install adjustText
 import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-# import statsmodels.formula.api as smf
-#import seaborn as sns
-#from adjustText import adjust_text
+import statsmodels.formula.api as smf
+import seaborn as sns
+from adjustText import adjust_text
 
 # -----------------------
 # Title and description
