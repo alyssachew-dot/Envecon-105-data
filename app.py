@@ -41,7 +41,9 @@ sns.lineplot(
     hue="Country",
     estimator=None,
     alpha=0.4,
-    legend=False)
+    legend=False'
+    ax = ax)
+
 us_data = all_merged_drop[(all_merged_drop["Indicator"] == "Emissions") & (all_merged_drop["Country"] == "United States")]
 sns.lineplot(
     data=us_data,
