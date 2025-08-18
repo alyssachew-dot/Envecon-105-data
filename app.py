@@ -464,6 +464,9 @@ with col2:
 # scatterplot z-score (USA) 
 from scipy.stats import zscore
 fig12, ax = plt.subplots(figsize=(8,6))
+
+wide_US['Emissions_scaled'] = zscore(wide_US['Emissions'])
+wide_US['Temperature_scaled'] = zscore(wide_US['Temperature'])
 sns.regplot(
     data=wide_US,
     x='Emissions_scaled',
@@ -486,6 +489,9 @@ ax.grid(True)
 
 # scatterplot z-score (Canada) 
 fig13, ax = plt.subplots(figsize=(8,6))
+
+wide_Canada['Emissions_scaled'] = zscore(wide_Canada['Emissions'])
+wide_Canada['Temperature_scaled'] = zscore(wide_Canada['Temperature'])
 sns.regplot(
     data=wide_Canada,
     x='Emissions_scaled',
