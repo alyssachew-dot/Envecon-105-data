@@ -25,34 +25,50 @@ def my_theme():
         "ytick.labelsize": 12,
         "figure.titlesize": 16,
         "axes.titleweight": "normal",
-        "figure.autolayout": True,})
+        "figure.autolayout": True,
+    })
 
 my_theme()
 
-plt.figure(figsize=(12, 6))
+# Title and description for dashboard
+st.title("CO₂ Emissions Dashboard")
+st.write("This dashboard shows country-level CO₂ emissions over time, with Canada highlighted.")
+
+# Create figure and axes
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# All countries
 sns.lineplot(
     data = all_merged_drop[all_merged_drop["Indicator"] == "Emissions"],
     x = "Year",
     y = "Value",
     hue = "Country",
     estimator = None,
-    alpha=0.4,
-    legend=False)
-canada_data = all_merged_drop[(all_merged_drop["Indicator"] == "Emissions") & (all_merged_drop["Country"] == "Canada")]
+    alpha = 0.4,
+    legend = False,
+    ax = ax
+)
+
+# Canada highlighted
+canada_data = all_merged_drop[
+    (all_merged_drop["Indicator"] == "Emissions") &
+    (all_merged_drop["Country"] == "Canada")
+]
 sns.lineplot(
     data = canada_data,
-    x="Year",
-    y="Value",
-    color="blue",
-    label="Canada",
-    linewidth=2.5)
+    x = "Year",
+    y = "Value",
+    color = "blue",
+    label = "Canada",
+    linewidth = 2.5,
+    ax = ax
+)
 
-plt.title("Country CO\u2082 Emissions per Year (1751-2014)")
-plt.xlabel("Year")
-plt.ylabel("Emissions (Metric Tonnes)")
+# Labels
+ax.set_title("Country CO₂ Emissions per Year (1751–2014)")
+ax.set_xlabel("Year")
+ax.set_ylabel("Emissions (Metric Tonnes)")
+ax.legend()
 
-plt.legend()
-plt.show()
-st.pyplot(plt)
-  
-
+# Show in Streamlit
+st.pyplot(fig)
