@@ -16,18 +16,47 @@ st.write("""This is a simple dashboard demonstrating interactive widgets, charts
 
 
 all_merged_drop_ca = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop.csv")
-all_merged_drop = pd.read_csv("
+all_merged_drop = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop_USA.csv")
 
+# first plot (USA)
+def my_theme():
+    sns.set_style("whitegrid")
+    plt.rcParams.update({
+        "axes.titlesize": 16,
+        "axes.labelsize": 12,
+        "xtick.labelsize": 12,
+        "ytick.labelsize": 12,
+        "figure.titlesize": 16,
+        "axes.titleweight": "normal",
+        "figure.autolayout": True,})
 
+my_theme()
 
+fig1, ax = plt.subplots(figsize=(12, 6))
 
+sns.lineplot(
+    data = all_merged_drop[all_merged_drop["Indicator"] == "Emissions"],
+    x="Year",
+    y="Value",
+    hue="Country",
+    estimator=None,
+    alpha=0.4,
+    legend=False)
+us_data = all_merged_drop[(all_merged_drop["Indicator"] == "Emissions") & (all_merged_drop["Country"] == "United States")]
+sns.lineplot(
+    data=us_data,
+    x="Year",
+    y="Value",
+    color="blue",
+    label="United States",
+    linewidth=2.5)
 
+plt.title("Country CO\u2082 Emissions per Year (1751-2014)")
+plt.xlabel("Year")
+plt.ylabel("Emissions (Metric Tonnes)")
 
-
-
-
-
-
+plt.legend()
+plt.show()
 
 
 # first plot (canada)
@@ -50,7 +79,7 @@ st.title("CO₂ Emissions Line Plot")
 st.write("This plot shows CO₂ emission levels of countries from all over the world over time (from 1751-2014), with Canada highlighted in dark blue.")
 
 # Create figure and axes
-fig, ax = plt.subplots(figsize=(12, 6))
+fig2, ax = plt.subplots(figsize=(12, 6))
 
 # All countries
 sns.lineplot(
@@ -89,7 +118,15 @@ ax.legend()
 st.pyplot(fig)
 
 
+col1, col2 = st.columns(2)
 
+with col1:
+    st.subheader("USA Highlighted")
+    st.pyplot(fig1)
+
+with col2:
+    st.subheader("Canada Highlighted")
+    st.pyplot(fig2)
 
 
 
