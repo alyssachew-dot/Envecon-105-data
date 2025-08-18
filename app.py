@@ -1,5 +1,5 @@
-!pip install plotnine
-!pip install adjustText
+pip install plotnine
+pip install adjustText
 import streamlit as st
 import pandas as pd
 import numpy as np
