@@ -579,3 +579,29 @@ with col1:
 with col2:
     st.subheader("Canada CO₂ Emissions vs number of Disasters (1980–2014)")
     st.pyplot(fig11)
+
+
+st.title("Data Analysis")
+col 1, col2 = st.columns(2)
+st.header("Mean and Standard Deviations) 
+with col1:
+    st.subheader("USA")
+    st.write("mean emissions US: 5142285.714285715 Mt")
+    st.write("standard deviation emissions US: 450549.2446434013 Mt")
+    st.write("mean temperature US: 52.872 degrees Celsius")
+    st.write("standard deviation temperature US: 0.8906600328507205 degrees Celsius")
+
+with col2:
+    st.subheader("Canada")
+    st.write("mean emissions Canada: 487200.0 Mt")
+    st.write("standard deviation emissions Canada: 51928.00445866203 Mt")
+    st.write("mean temperature Canada: 0.8285714285714286 degrees Celsius")
+    st.write("standard deviation temperature Canada: 0.8753390699580123 degrees Celsius")
+
+st.title("Conclusion")
+st.write("My results show that the global CO2 emission rates have drastically increased over time. This can be seen very clearly from my graph Country CO2 emissions per year where there is a drastic upward increase by many countries starting as early as 1900 for some countries (USA). For the US in particular, although we are not the most CO2 emitting nation, we are definetly amongst the top few. This can be clearly seen with the Top 10 CO2 producing Countries graph which the US is most definetly on the leaderboard of. Similar statements can also be made for Canada, because like the US: it is not the most CO2 emitting nation, it is most definetly amongst the top few. Which can also be clearly seen with the Top 10 CO2 producing Countries graph which Canada is also most definetly on the leaderboard of.
+
+I would say that CO2 emissions definetly do have some sort of a correlation to the increasing trend in global temperatures. This is most evidently seen by  both the USA and Canada CO2 emissions and Temperature Scatterplot. The correlation coefficient for the graphs are 0.471 and 0.489 respectively, which indicates a moderately positive correlation between the two variables. As with its association with natural disaster rates, there also seems to be a slight positive correlation as in the plot Canada CO2 emissions and Disasters Scatterplot the correlation coefficient between the two variables is 0.447. However, the correlation between the number of disasters and CO2 emissions for the US is less strongly related as the correlation coefficient is only 0.373.")
+
+
+
