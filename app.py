@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 
 # import statsmodels.formula.api as smf
-import seaborn as sns
-from adjustText import adjust_text
+#import seaborn as sns
+#from adjustText import adjust_text
 
 # -----------------------
 # Title and description
