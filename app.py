@@ -16,6 +16,10 @@ st.write("""This is a simple dashboard demonstrating interactive widgets, charts
 
 
 all_merged_drop = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop.csv")
+
+
+
+# first plot
 def my_theme():
     sns.set_style("whitegrid")
     plt.rcParams.update({
@@ -71,4 +75,50 @@ ax.set_ylabel("Emissions (Metric Tonnes)")
 ax.legend()
 
 # Show in Streamlit
+st.pyplot(fig)
+
+
+
+
+
+
+
+# second plot
+from plotnine import *
+top_10 = ( all_merged_drop[
+        (all_merged_drop["Indicator"] == "Emissions") & 
+        (all_merged_drop["Year"] == 2014)]
+    .assign(rank=lambda df: df["Value"].rank(method="dense", ascending=False).astype(int))
+    .query("rank <= 10")
+    .sort_values("rank"))
+
+data = all_merged_drop[
+    (all_merged_drop["Country"].isin(top_10["Country"])) &
+    (all_merged_drop["Indicator"] == "Emissions") &
+    (all_merged_drop["Year"] >= 1900)].copy()
+
+order = data[data["Year"] == 2014].set_index("Country")["Value"].sort_values(ascending=False).index
+data["Country"] = pd.Categorical(data["Country"], categories=order, ordered=True)
+
+data["logValue"] = np.log(data["Value"])
+
+plot = ( ggplot(data, aes("Year", "Country", fill="logValue"))
+    + geom_tile()
+    + scale_fill_cmap(name="viridis")
+    + scale_x_continuous(breaks = range(1900, 2015, 5), labels = [str(y) for y in range(1900, 2015, 5)])
+    + labs(
+        title=r"Top 10 CO$_2$ Emission-producing Countries",
+        subtitle = "Ranked by Emissions in 2014",
+        fill = "Ln(CO2 Emissions)")
+    + theme_classic()
+    + theme(
+        axis_text_x = element_text(size = 12, angle = 90, color = "black"),
+        axis_text_y = element_text(size = 12, color = "black"),
+        axis_title = element_blank(),
+        plot_title = element_text(size = 16),
+        legend_position = "bottom"))
+
+fig = plot.draw()
+st.header("Top 10 CO₂ Emission-Producing Countries")
+st.write("This heatmap shows emissions for the top 10 countries ranked by 2014 emissions.")
 st.pyplot(fig)
