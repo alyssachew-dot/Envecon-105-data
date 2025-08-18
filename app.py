@@ -80,7 +80,7 @@ my_theme()
 
 # Title and description for dashboard
 st.title("CO₂ Emissions Line Plot")
-st.write("This plot shows CO₂ emission levels of countries from all over the world over time (from 1751-2014), with Canada highlighted in dark blue.")
+st.write("This plot shows CO₂ emission levels of countries from all over the world over time (from 1751-2014), the left plot showing the US highlighted and the right plot showing Canada highlighted both in dark blue.")
 
 # Create figure and axes
 fig2, ax = plt.subplots(figsize=(12, 6))
