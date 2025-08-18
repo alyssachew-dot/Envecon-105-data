@@ -114,8 +114,6 @@ ax.set_xlabel("Year")
 ax.set_ylabel("Emissions (Metric Tonnes)")
 ax.legend()
 
-# Show in Streamlit
-st.pyplot(fig)
 
 
 col1, col2 = st.columns(2)
