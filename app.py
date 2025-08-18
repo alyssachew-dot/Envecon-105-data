@@ -300,11 +300,10 @@ distrib_indicators_plot_ca = (
 fig5 = distrib_indicators_plot_ca.draw()
 
 
-col1, col2 = st.columns(2)
-
 st.header("Distribution of indicators (energy, GDP, and emissions) around the world and USA and Canada isoalted") 
 st.write("Side-by-side display of the graphs of the world wide distribution of indicators and the graphs of just USA (left) and Canada (right) distribtions of indicators isolated")
 
+col1, col2 = st.columns(2)
 with col1:
     st.subheader("USA line isolated")
     st.pyplot(fig4)
@@ -384,10 +383,10 @@ CO2_temp_Canada["Label"] = CO2_temp_Canada["Indicator"].map({
 })
 fig7 = CO2_temp_Canada_facet.draw()
 
-col1, col2 = st.columns(2)
 
 st.header("USA and Canada Emissions and temperature scatterplots") 
 st.write("Simultaneous display of the scatterplot of emissions v. time and temperature v. time for both the US (left) and Canada (right)")
+col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("USA specific graphs")
