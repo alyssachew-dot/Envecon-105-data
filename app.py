@@ -421,9 +421,7 @@ ax.set_ylabel("Temperature (Fahrenheit)", fontsize=14)
 ax.tick_params(axis="x", labelsize=12, colors="black")
 ax.tick_params(axis="y", labelsize=12, colors="black")
 
-# Show in Streamlit
-st.subheader("US Emissions vs Temperature (1980–2014)")
-st.pyplot(fig8)
+
 
 
 # scatterplots (Canada)
@@ -449,18 +447,15 @@ ax.set_ylabel("Temperature Departure (Fahrenheit)", fontsize=14)
 ax.tick_params(axis="x", labelsize=12, colors="black")
 ax.tick_params(axis="y", labelsize=12, colors="black")
 
-# Show in Streamlit
-st.subheader("Canada CO₂ Emissions vs Temperature (1980–2014)")
-st.pyplot(fig9)
 
 st.header("USA and Canada Emissions v. Temperature scatterplots") 
 st.write("Scatterplot of Emissions v. Temperature for both the US (left) and Canada (right) with line of best fit")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("USA specific graph")
+    st.subheader("US Emissions vs Temperature (1980–2014)")
     st.pyplot(fig8)
 
 with col2:
-    st.subheader("Canada specific graph")
+    st.subheader("Canada CO₂ Emissions vs Temperature (1980–2014)")
     st.pyplot(fig9)
