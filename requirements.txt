@@ -2,3 +2,4 @@ matplotlib
 plotly
 seaborn
 adjustText
+statsmodels
