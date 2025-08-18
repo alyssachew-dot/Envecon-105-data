@@ -15,11 +15,23 @@ st.title("Alyssa Chew Envecon 105 Dashboard")
 st.write("""This is a simple dashboard demonstrating interactive widgets, charts, and layout using Streamlit.""")
 
 
-all_merged_drop = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop.csv")
+all_merged_drop_ca = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop.csv")
 
 
 
-# first plot
+
+
+
+
+
+
+
+
+
+
+
+
+# first plot (canada)
 def my_theme():
     sns.set_style("whitegrid")
     plt.rcParams.update({
@@ -43,7 +55,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 
 # All countries
 sns.lineplot(
-    data = all_merged_drop[all_merged_drop["Indicator"] == "Emissions"],
+    data = all_merged_drop_ca[all_merged_drop_ca["Indicator"] == "Emissions"],
     x = "Year",
     y = "Value",
     hue = "Country",
@@ -54,9 +66,9 @@ sns.lineplot(
 )
 
 # Canada highlighted
-canada_data = all_merged_drop[
-    (all_merged_drop["Indicator"] == "Emissions") &
-    (all_merged_drop["Country"] == "Canada")
+canada_data = all_merged_drop_ca[
+    (all_merged_drop_ca["Indicator"] == "Emissions") &
+    (all_merged_drop_ca["Country"] == "Canada")
 ]
 sns.lineplot(
     data = canada_data,
@@ -83,7 +95,7 @@ st.pyplot(fig)
 
 
 
-# second plot
+# heatmap
 from plotnine import *
 top_10 = ( all_merged_drop[
         (all_merged_drop["Indicator"] == "Emissions") & 
