@@ -510,7 +510,7 @@ st.write("Scatterplot of Emissions v. number of Disasters for both the US (left)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("US Emissions vs number of Disasters (1980–2014)")
+    st.subheader("USA CO₂ Emissions vs number of Disasters (1980–2014)")
     st.pyplot(fig10)
 
 with col2:
