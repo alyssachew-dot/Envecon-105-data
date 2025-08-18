@@ -5,3 +5,4 @@ adjustText
 statsmodels
 plotnine
 scikit-misc
+scipy
