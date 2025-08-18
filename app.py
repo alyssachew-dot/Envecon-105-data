@@ -53,6 +53,6 @@ plt.ylabel("Emissions (Metric Tonnes)")
 
 plt.legend()
 plt.show()
-
+st.pyplot(plt)
   
 
