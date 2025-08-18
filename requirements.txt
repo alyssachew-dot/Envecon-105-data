@@ -4,3 +4,4 @@ seaborn
 adjustText
 statsmodels
 plotnine
+scikit-misc
