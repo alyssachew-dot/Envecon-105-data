@@ -461,6 +461,63 @@ with col2:
     st.pyplot(fig9)
 
 
+# scatterplot z-score (USA) 
+from scipy.stats import zscore
+fig12, ax = plt.subplots(figsize=(8,6))
+sns.regplot(
+    data=wide_US,
+    x='Emissions_scaled',
+    y='Temperature_scaled',
+    ci=None,
+    color='black',
+    line_kws={'color': 'blue'},
+    scatter_kws={'color': 'black', 's': 40},
+    ax=ax
+)
+
+ax.set_title("US CO₂ Emissions and Temperature (1980–2014)", fontsize=16)
+ax.set_xlabel("Scaled Emissions (z-score)", fontsize=14)
+ax.set_ylabel("Scaled Temperature (z-score)", fontsize=14)
+ax.tick_params(axis="x", labelsize=12)
+ax.tick_params(axis="y", labelsize=12)
+ax.grid(True)
+
+
+
+# scatterplot z-score (Canada) 
+fig13, ax = plt.subplots(figsize=(8,6))
+sns.regplot(
+    data=wide_Canada,
+    x='Emissions_scaled',
+    y='Temperature_scaled',
+    ci=None,
+    color='black',
+    line_kws={'color': 'blue'},
+    scatter_kws={'color': 'black', 's': 40},
+    ax=ax
+)
+
+ax.set_title("Canada CO₂ Emissions and Temperature (1980–2014)", fontsize=16)
+ax.set_xlabel("Scaled Emissions (z-score)", fontsize=14)
+ax.set_ylabel("Scaled Temperature (z-score)", fontsize=14)
+ax.tick_params(axis="x", labelsize=12, colors="black")
+ax.tick_params(axis="y", labelsize=12, colors="black")
+ax.grid(True)
+
+
+
+st.header("USA and Canada Emissions v. Temperature (standardized) scatterplots") 
+st.write("Scatterplot of Emissions v.  Temperature (standardized) for both the US (left) and Canada (right) with line of best fit")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("USA CO₂ Emissions vs Temperature (standardized) (1980–2014)")
+    st.pyplot(fig12)
+
+with col2:
+    st.subheader("Canada CO₂ Emissions vs Temperature (standardized) (1980–2014)")
+    st.pyplot(fig13)
+
 
 # disaster v emissions scatterplot (USA)
 filtered = all_merged_drop[
