@@ -16,8 +16,7 @@ st.write("""This is a simple dashboard demonstrating interactive widgets, charts
 
 
 all_merged_drop_ca = pd.read_csv("https://raw.githubusercontent.com/alyssachew-dot/Envecon-105-data/refs/heads/main/all_merged_drop.csv")
-
-
+all_merged_drop = pd.read_csv("
 
 
 
