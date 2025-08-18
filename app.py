@@ -454,10 +454,12 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("US Emissions vs Temperature (1980–2014)")
+    st.write("Correlation Coefficient: 0.471")
     st.pyplot(fig8)
 
 with col2:
     st.subheader("Canada CO₂ Emissions vs Temperature (1980–2014)")
+    st.write("Correlation Coefficient: 0.489")
     st.pyplot(fig9)
 
 
@@ -573,10 +575,12 @@ st.write("Scatterplot of Emissions v. number of Disasters for both the US (left)
 col1, col2 = st.columns(2)
 
 with col1:
+    st.write("Correlation Coefficient: 0.373")
     st.subheader("USA CO₂ Emissions vs number of Disasters (1980–2014)")
     st.pyplot(fig10)
 
 with col2:
+    st.write("Correlation Coefficient: 0.447")
     st.subheader("Canada CO₂ Emissions vs number of Disasters (1980–2014)")
     st.pyplot(fig11)
 
