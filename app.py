@@ -459,3 +459,60 @@ with col1:
 with col2:
     st.subheader("Canada CO₂ Emissions vs Temperature (1980–2014)")
     st.pyplot(fig9)
+
+
+
+# disaster v emissions scatterplot (USA)
+filtered = all_merged_drop[
+    (all_merged_drop['Country'] == "United States") &
+    (all_merged_drop['Year'] >= 1980) &
+    (all_merged_drop['Year'] <= 2014)
+]
+filtered = filtered.drop(columns=['Label'])
+wide_US = filtered.pivot(index='Year', columns='Indicator', values='Value').reset_index()
+
+# Plot
+fig10, ax = plt.subplots(figsize=(8,6))
+sns.scatterplot(data=wide_US, x='Emissions', y='Disasters', color="black", s=40, ax=ax)
+sns.regplot(data=wide_US, x='Emissions', y='Disasters', ci=None, scatter=False, color="red", ax=ax)
+
+ax.set_title("USA CO₂ Emissions and Disasters (1980–2014)", fontsize=16)
+ax.set_xlabel("Emissions (Metric Tonnes)", fontsize=14)
+ax.set_ylabel("Number of Disasters", fontsize=14)
+ax.tick_params(axis="x", labelsize=12, colors="black")
+ax.tick_params(axis="y", labelsize=12, colors="black")
+
+
+# disaster v emissions scatterplot (Canada)
+filtered = all_merged_drop_ca[
+    (all_merged_drop_ca['Country'] == "Canada") &
+    (all_merged_drop_ca['Year'] >= 1980) &
+    (all_merged_drop_ca['Year'] <= 2014)
+]
+filtered = filtered.drop(columns=['Label'])
+wide_Canada = filtered.pivot(index='Year', columns='Indicator', values='Value').reset_index()
+
+# Plot
+fig11, ax = plt.subplots(figsize=(8,6))
+sns.scatterplot(data=wide_Canada, x='Emissions', y='Disasters', color="black", s=40, ax=ax)
+sns.regplot(data=wide_Canada, x='Emissions', y='Disasters', ci=None, scatter=False, color="red", ax=ax)
+
+ax.set_title("Canada CO₂ Emissions and Disasters (1980–2014)", fontsize=16)
+ax.set_xlabel("Emissions (Metric Tonnes)", fontsize=14)
+ax.set_ylabel("Number of Disasters", fontsize=14)
+ax.tick_params(axis="x", labelsize=12, colors="black")
+ax.tick_params(axis="y", labelsize=12, colors="black")
+
+
+
+st.header("USA and Canada Emissions v. number of Disasters scatterplots") 
+st.write("Scatterplot of Emissions v. number of Disasters for both the US (left) and Canada (right) with line of best fit")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("US Emissions vs number of Disasters (1980–2014)")
+    st.pyplot(fig10)
+
+with col2:
+    st.subheader("Canada CO₂ Emissions vs number of Disasters (1980–2014)")
+    st.pyplot(fig11)
