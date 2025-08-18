@@ -303,7 +303,7 @@ fig5 = distrib_indicators_plot_ca.draw()
 col1, col2 = st.columns(2)
 
 st.header("Distribution of indicators (energy, GDP, and emissions) around the world and USA and Canada isoalted") 
-st.write("Side-by-side display of the graphs of the world wide distribution of indicators and the graphs of just USA (left) and Canada (right) distribtions of indicators isolated")")
+st.write("Side-by-side display of the graphs of the world wide distribution of indicators and the graphs of just USA (left) and Canada (right) distribtions of indicators isolated")
 
 with col1:
     st.subheader("USA line isolated")
