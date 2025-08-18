@@ -252,3 +252,31 @@ st.header("Top 10 CO₂ Emission-Producing Countries")
 st.write("This line graph shows emissions for the top 10 countries ranked by 2014 emissions.")
 st.pyplot(fig3)
 
+
+
+
+# Distributions of indicators by Year and Value 
+from plotnine import (
+    ggplot, aes, geom_line, facet_grid, labs, theme, element_text
+)
+
+filtered_df = all_merged_drop[
+    ~all_merged_drop["Indicator"].isin(["Disasters", "Temperature"])
+].copy()
+
+distrib_indicators_plot = (
+    ggplot(filtered_df, aes(x="Year", y="Value", group="Country"))
+    + geom_line()
+    + facet_grid("Indicator ~ Region", scales="free_y")
+    + labs(
+        title="Distribution of Indicators by Year and Value",
+        y="Indicator Value"
+    )
+    + my_theme()  
+    + theme(strip_text=element_text(size=16, face="bold"), figure_size=(12, 12))
+)
+fig4 = distrib_indicators_plot.draw()
+st.subheader("Distributions of indicators by Year and Value")
+#st.header("Top 10 CO₂ Emission-Producing Countries")
+st.write("These graphs single out the lines for Canada and the USA and creates plots which is deployed right next to the graphs that complile the lines for all countries for all the different indicators (GDP growth, energy, emissions).")
+st.pyplot(fig4)
