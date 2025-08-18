@@ -49,7 +49,9 @@ sns.lineplot(
     y="Value",
     color="blue",
     label="United States",
-    linewidth=2.5)
+    linewidth=2.5,
+    ax = ax
+)
 
 plt.title("Country CO\u2082 Emissions per Year (1751-2014)")
 plt.xlabel("Year")
